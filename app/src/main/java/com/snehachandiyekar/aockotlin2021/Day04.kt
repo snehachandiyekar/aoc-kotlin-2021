@@ -57,6 +57,7 @@ fun markBoardValuesPart02(num: Int, boardList: MutableList<Board>): Board? {
     return null
 }
 
+//THIS LOGIC NEEDS IMPROVEMENT
 private fun readBoards(input: List<String>): MutableList<Board> {
     var boardList = mutableListOf<Board>()
     var board = Board()
