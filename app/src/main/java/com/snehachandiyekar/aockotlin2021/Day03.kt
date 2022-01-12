@@ -3,6 +3,7 @@ package com.snehachandiyekar.aockotlin2021
 //gamma rate
 //epsilon rate
 //power consumption
+//life support
 
 fun main() {
     val input = readInputString("Day03.txt")
