@@ -2,16 +2,15 @@ package com.snehachandiyekar.aockotlin2021
 
 fun main() {
     val input = readInputString("Day06.txt")
-    val dayCountList = input[0].split(",").map { it.toInt() }.toMutableList()
+    val dayCountList = input[0].split(",").map { it.toInt() }
     part1Memo(dayCountList, 0)
 }
-
 
 val noOfDays = 256
 var count = 0L
 var fishMap = emptyMap<Int, Long>().toMutableMap()
 
-fun part1Memo(input: MutableList<Int>, state: Int): Long {
+fun part1Memo(input: List<Int>, state: Int): Long {
     for (i in input) {
         count++
         if (!fishMap.containsKey(i)) {
