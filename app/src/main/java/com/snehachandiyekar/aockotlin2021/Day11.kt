@@ -3,7 +3,13 @@ package com.snehachandiyekar.aockotlin2021
 fun main() {
     val input: List<String> = readInputString("Day11.txt")
 
-    var matrix: Array<Array<OctopusVertex>> = Array(input.size) { row ->
+    val matrix: Array<Array<OctopusVertex>> = Array(input.size) { row ->
+        Array(input[0].length) { col ->
+            OctopusVertex(input[row][col].digitToInt())
+        }
+    }
+
+    val matrix1: Array<Array<OctopusVertex>> = Array(input.size) { row ->
         Array(input[0].length) { col ->
             OctopusVertex(input[row][col].digitToInt())
         }
@@ -93,6 +99,10 @@ fun main() {
                 octopus.num = 0
             }
 
+            if (glowingArray.size == (input.size * input[0].size)) {
+                println(step)
+            }
+
             //displayMatrix(input)
         }
 
@@ -102,13 +112,34 @@ fun main() {
     }
 
 
-    fun part2(input: List<String>): Long {
+    fun part2(input: Array<Array<OctopusVertex>>): Int {
+        var allGlowStep = 0
 
-        return 0L
+        for (step in 1..Int.MAX_VALUE) {
+            var glowingArray = mutableListOf<OctopusVertex>()
+
+            for (hIndex in input.indices) {
+                for (vIndex in input[hIndex].indices) {
+                    addStep(input, hIndex, vIndex, glowingArray)
+                }
+            }
+
+            if (glowingArray.size == (input.size * input[0].size)) {
+                allGlowStep = step
+                break
+            }
+
+            for (octopus in glowingArray) {
+                octopus.isGlowing = false
+                octopus.num = 0
+            }
+        }
+
+        return allGlowStep
     }
 
     println(part1(matrix, 100))
-    //print(part2(input))
+    print(part2(matrix1))
 }
 
 class OctopusVertex(var num: Int, var isGlowing: Boolean = false) {}
